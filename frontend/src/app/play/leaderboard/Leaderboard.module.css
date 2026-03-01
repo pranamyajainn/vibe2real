@@ -1,0 +1,228 @@
+/* Leaderboard Page — matching Simulator timeReality grid style */
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+}
+
+.pageHeader {
+    margin-bottom: 4rem;
+    padding-bottom: 2rem;
+    border-bottom: 2px solid #333;
+}
+
+/* system-voice */
+.pageTag {
+    font-family: var(--font-mono), monospace;
+    font-size: 0.9rem;
+    color: #ff3333;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+/* Hero-scale headline */
+.pageTitle {
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin: 0 0 0.75rem;
+}
+
+.pageSubtitle {
+    font-family: var(--font-mono), monospace;
+    font-size: 1rem;
+    color: #ccc;
+}
+
+/* Stat boxes — Simulator timeReality pattern */
+.statsRow {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    border: 2px solid #333;
+    margin-bottom: 3rem;
+}
+
+.statBox {
+    background: #050505;
+    padding: 2rem;
+    border-right: 1px solid #1a1a1a;
+}
+
+.statBox:last-child {
+    border-right: none;
+}
+
+.statLabel {
+    font-family: var(--font-mono), monospace;
+    font-size: 0.85rem;
+    color: #ff3333;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+/* .timeValue scale */
+.statValue {
+    font-family: var(--font-mono), monospace;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #fff;
+}
+
+/* Table */
+.tableWrap {
+    border: 2px solid #333;
+    overflow-x: auto;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table th {
+    font-family: var(--font-mono), monospace;
+    font-size: 0.85rem;
+    color: #ff3333;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-align: left;
+    padding: 1rem 1.5rem;
+    background: #050505;
+    border-bottom: 2px solid #333;
+    border-right: 1px solid #1a1a1a;
+    font-weight: 800;
+}
+
+.table th:last-child {
+    border-right: none;
+}
+
+.table td {
+    font-family: var(--font-mono), monospace;
+    font-size: 0.9rem;
+    color: #888;
+    padding: 1.2rem 1.5rem;
+    border-bottom: 1px solid #0d0d0d;
+    border-right: 1px solid #0d0d0d;
+    vertical-align: middle;
+}
+
+.table td:last-child {
+    border-right: none;
+}
+
+.tableRow:hover td {
+    background: #070707;
+    color: #ccc;
+}
+
+.rankCell {
+    font-weight: 800;
+    color: #fff !important;
+    font-size: 1rem !important;
+}
+
+.rankCell.gold {
+    color: #ffff00 !important;
+}
+
+.rankCell.silver {
+    color: #ccc !important;
+}
+
+.rankCell.bronze {
+    color: #ff6600 !important;
+}
+
+.anonCell {
+    color: #444 !important;
+    font-size: 0.8rem !important;
+    letter-spacing: 0.05em;
+}
+
+.xpCell {
+    color: #ffff00 !important;
+    font-weight: 700;
+    font-size: 1rem !important;
+}
+
+.tierCell {
+    display: inline-block;
+    padding: 3px 10px;
+    border: 1px solid currentColor;
+    font-size: 0.75rem !important;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.tierCell.guidance {
+    color: #555;
+}
+
+.tierCell.independent {
+    color: #00ff88;
+}
+
+.tierCell.efficient {
+    color: #00aaff;
+}
+
+.tierCell.reliable {
+    color: #ffff00;
+}
+
+.timeCell {
+    font-size: 0.85rem;
+    color: #666 !important;
+    letter-spacing: 0.05em;
+}
+
+.emptyState {
+    font-family: var(--font-mono), monospace;
+    font-size: 0.9rem;
+    color: #333;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    text-align: center;
+    padding: 4rem;
+    border-top: 1px solid #0d0d0d;
+}
+
+.ctaRow {
+    margin-top: 3rem;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.startBtn {
+    background: #ff3333;
+    color: #fff;
+    border: 2px solid #ff3333;
+    padding: 1.1rem 2.5rem;
+    font-family: var(--font-mono), monospace;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.1s ease;
+}
+
+.startBtn:hover {
+    opacity: 0.85;
+}
+
+.startBtn:active {
+    transform: translate(2px, 2px);
+}

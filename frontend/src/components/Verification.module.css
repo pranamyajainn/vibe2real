@@ -1,0 +1,66 @@
+.verificationSection {
+    background-color: var(--background);
+    color: var(--foreground);
+    border-bottom: 2px solid var(--border-color);
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 4rem;
+}
+
+@media (min-width: 768px) {
+    .grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: flex-start;
+}
+
+.info h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+}
+
+.desc {
+    font-size: 1.25rem;
+    color: #ccc;
+    font-family: var(--font-mono), monospace;
+}
+
+.price {
+    font-size: 3rem;
+    font-weight: bold;
+    font-family: var(--font-mono), monospace;
+}
+
+.signals {
+    background: #111;
+    padding: 3rem;
+    border: 1px solid var(--border-color);
+}
+
+.signals .system-voice {
+    font-size: 1.2rem;
+}
+
+.signalList {
+    margin-top: 2rem;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.signalList li {
+    font-size: 1.5rem;
+    font-weight: bold;
+    border-bottom: 1px dashed var(--border-color);
+    padding-bottom: 0.5rem;
+    color: var(--foreground);
+}

@@ -1,0 +1,411 @@
+/* Completion Report
+   Landing page design language: big tier headline, monospace data, brutalist CTAs */
+
+.reportPage {
+    min-height: calc(100vh - 60px);
+    padding: 4rem 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.breadcrumb {
+    font-family: var(--font-mono), monospace;
+    font-size: 0.9rem;
+    color: #ff3333;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 4rem;
+}
+
+.breadcrumb a {
+    color: #555;
+    text-decoration: none;
+    transition: color 0.1s;
+}
+
+.breadcrumb a:hover {
+    color: #ccc;
+}
+
+/* Phase 0 — Stabilizing screen */
+.stabilizing {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 60vh;
+    text-align: center;
+    gap: 2.5rem;
+}
+
+/* system-voice flashing text */
+.stabilizingText {
+    font-family: var(--font-mono), monospace;
+    font-size: 1.2rem;
+    color: #ff3333;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    animation: flicker 0.6s ease infinite;
+}
+
+@keyframes flicker {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.6;
+    }
+}
+
+.stabilizingBar {
+    width: 400px;
+    max-width: 90vw;
+    height: 3px;
+    background: #111;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #333;
+}
+
+.stabilizingFill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background: #00ff88;
+    animation: sweep 1.8s ease forwards;
+}
+
+@keyframes sweep {
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 100%;
+    }
+}
+
+/* Report sections */
+.reportSection {
+    margin-bottom: 4rem;
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Tier reveal — Simulator anti-tutorial block style */
+.tierReveal {
+    border: 2px solid currentColor;
+    padding: 3rem;
+    text-align: center;
+    position: relative;
+}
+
+/* system-voice */
+.tierLabel {
+    font-family: var(--font-mono), monospace;
+    font-size: 0.9rem;
+    color: inherit;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    opacity: 0.6;
+    margin-bottom: 1.5rem;
+    display: block;
+}
+
+/* Hero-scale tier name */
+.tierTitle {
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+}
+
+.tierTitle.guidance {
+    color: #555;
+}
+
+.tierTitle.independent {
+    color: #00ff88;
+}
+
+.tierTitle.efficient {
+    color: #00aaff;
+}
+
+.tierTitle.reliable {
+    color: #ffff00;
+}
+
+.tierDesc {
+    font-family: var(--font-mono), monospace;
+    font-size: 1rem;
+    color: #ccc;
+    line-height: 1.6;
+    max-width: 600px;
+    margin: 0 auto 2rem;
+}
+
+/* .timeValue scale from Simulator */
+.xpGain {
+    font-family: var(--font-mono), monospace;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #ffff00;
+    letter-spacing: 0.05em;
+}
+
+/* Streak banner — anti-tutorial red block */
+.streakBanner {
+    background: #ff3333;
+    padding: 1rem 2rem;
+    font-family: var(--font-mono), monospace;
+    font-size: 0.9rem;
+    color: #fff;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+}
+
+/* Section headers — system-voice */
+.sectionTitle {
+    font-family: var(--font-mono), monospace;
+    font-size: 0.9rem;
+    color: #ff3333;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid #333;
+    display: block;
+}
+
+/* Behavior stats — Simulator timeReality grid */
+.behavioralGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    border: 2px solid #333;
+}
+
+.behaviorStat {
+    background: #050505;
+    padding: 2rem;
+    border-right: 1px solid #1a1a1a;
+    border-bottom: 1px solid #1a1a1a;
+}
+
+/* system-voice label */
+.behaviorStatLabel {
+    font-family: var(--font-mono), monospace;
+    font-size: 0.85rem;
+    color: #ff3333;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+    display: block;
+}
+
+/* .timeValue scale */
+.behaviorStatValue {
+    font-family: var(--font-mono), monospace;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #fff;
+}
+
+.behaviorStatSub {
+    font-family: var(--font-mono), monospace;
+    font-size: 0.8rem;
+    color: #444;
+    margin-top: 0.25rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.behavioralFlags {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.flagItem {
+    font-family: var(--font-mono), monospace;
+    font-size: 0.9rem;
+    color: #888;
+    padding: 0.75rem 1.5rem;
+    background: #050505;
+    border-left: 2px solid #333;
+    line-height: 1.5;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.flagItem.warning {
+    border-left-color: #ff3333;
+    color: #ff3333;
+}
+
+/* AI Dependency block */
+.aiDependencyBlock {
+    border: 2px solid #333;
+    padding: 2rem;
+    background: #050505;
+}
+
+.aiDependencyFlagged {
+    border-color: #ff3333;
+    background: #0d0000;
+}
+
+.aiDependencyLabel {
+    font-family: var(--font-mono), monospace;
+    font-size: 0.9rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+    display: block;
+    font-weight: 700;
+}
+
+.aiDependencyLabel.flagged {
+    color: #ff3333;
+}
+
+.aiDependencyLabel.clean {
+    color: #00ff88;
+}
+
+.aiDependencyDesc {
+    font-family: var(--font-mono), monospace;
+    font-size: 0.9rem;
+    color: #888;
+    line-height: 1.6;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+/* Transfer Reflection — Consequences cause/effect pattern */
+.reflectionList {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid #333;
+}
+
+.reflectionItem {
+    background: #050505;
+    padding: 2rem;
+    border-bottom: 1px solid #1a1a1a;
+}
+
+.reflectionItem:last-child {
+    border-bottom: none;
+}
+
+.reflectionObserved {
+    font-family: var(--font-mono), monospace;
+    font-size: 0.9rem;
+    color: #ff3333;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+}
+
+.reflectionArrow {
+    font-family: var(--font-mono), monospace;
+    font-size: 0.8rem;
+    color: #333;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.75rem;
+}
+
+.reflectionRealWorld {
+    font-family: var(--font-mono), monospace;
+    font-size: 0.95rem;
+    color: #ccc;
+    line-height: 1.6;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+}
+
+.reflectionTimeSaved {
+    font-family: var(--font-mono), monospace;
+    font-size: 0.85rem;
+    color: #00ff88;
+    margin-top: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+/* CTA buttons — global .btn style */
+.ctaRow {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.nextBtn {
+    background: #ff3333;
+    color: #fff;
+    border: 2px solid #ff3333;
+    padding: 1.1rem 2.5rem;
+    font-family: var(--font-mono), monospace;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.1s ease;
+}
+
+.nextBtn:hover {
+    opacity: 0.85;
+}
+
+.nextBtn:active {
+    transform: translate(2px, 2px);
+}
+
+.replayBtn {
+    background: transparent;
+    color: #fff;
+    border: 2px solid #333;
+    padding: 1.1rem 2.5rem;
+    font-family: var(--font-mono), monospace;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.1s ease;
+}
+
+.replayBtn:hover {
+    border-color: #888;
+}
+
+.replayBtn:active {
+    transform: translate(2px, 2px);
+}

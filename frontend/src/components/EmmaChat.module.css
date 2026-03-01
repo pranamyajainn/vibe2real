@@ -1,0 +1,229 @@
+/* Emma Chat Component Styles - Matching Vibe2Real Brutalist UI */
+
+.triggerBtn {
+    background: #110800;
+    color: #ff9933;
+    border: 1px solid #ff6600;
+    padding: 0.85rem 1.5rem;
+    font-family: var(--font-mono), monospace;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.1s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 2rem;
+}
+
+.triggerBtn:hover {
+    background: rgba(255, 102, 0, 0.1);
+}
+
+.triggerBtn:active {
+    transform: translate(1px, 1px);
+}
+
+.icon {
+    font-size: 1.1rem;
+}
+
+.chatContainer {
+    background: #050505;
+    border: 2px solid #333;
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    max-height: 500px;
+    animation: slideDown 0.2s ease;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.header {
+    background: #0d0d0d;
+    padding: 1rem 1.25rem;
+    border-bottom: 2px solid #333;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.headerTitle {
+    font-family: var(--font-mono), monospace;
+    font-size: 0.85rem;
+    color: #ff3333;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.statusDot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #00ff88;
+    box-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.4;
+    }
+}
+
+.closeBtn {
+    background: transparent;
+    border: none;
+    color: #888;
+    font-size: 1.5rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0 0.5rem;
+}
+
+.closeBtn:hover {
+    color: #fff;
+}
+
+.messageList {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    overflow-y: auto;
+    flex: 1;
+    min-height: 200px;
+}
+
+.messageWrapper {
+    display: flex;
+    gap: 1rem;
+    max-width: 85%;
+}
+
+.messageWrapper.user {
+    align-self: flex-end;
+    max-width: 75%;
+}
+
+.messageWrapper.assistant {
+    align-self: flex-start;
+}
+
+.avatar {
+    width: 32px;
+    height: 32px;
+    background: #ff3333;
+    color: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-mono), monospace;
+    font-weight: 800;
+    font-size: 0.85rem;
+    flex-shrink: 0;
+    border-radius: 2px;
+}
+
+.messageContent {
+    background: #111;
+    border: 1px solid #222;
+    padding: 1rem 1.25rem;
+    font-family: var(--font-mono), monospace;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #ddd;
+}
+
+.user .messageContent {
+    background: #222;
+    border-color: #444;
+    color: #fff;
+}
+
+.typing {
+    color: #888;
+    font-style: italic;
+    animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+}
+
+.inputArea {
+    display: flex;
+    border-top: 2px solid #333;
+    padding: 1rem;
+    background: #080808;
+    gap: 1rem;
+}
+
+.input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #333;
+    color: #fff;
+    font-family: var(--font-mono), monospace;
+    font-size: 0.9rem;
+    padding: 0.5rem;
+    outline: none;
+}
+
+.input:focus {
+    border-bottom-color: #ff3333;
+}
+
+.sendBtn {
+    background: transparent;
+    color: #ff3333;
+    border: 1px solid #ff3333;
+    padding: 0.5rem 1.25rem;
+    font-family: var(--font-mono), monospace;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: all 0.1s ease;
+}
+
+.sendBtn:hover:not(:disabled) {
+    background: rgba(255, 51, 51, 0.1);
+}
+
+.sendBtn:disabled {
+    border-color: #333;
+    color: #555;
+    cursor: not-allowed;
+}

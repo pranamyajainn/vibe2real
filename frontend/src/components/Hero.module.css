@@ -1,0 +1,33 @@
+.heroSection {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    /* Dark geometric noise or grid can be extended here */
+}
+
+.headline {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-size: clamp(2rem, 5vw, 4.5rem);
+    line-height: 1.1;
+    margin-bottom: 3rem;
+}
+
+.line1 {
+    color: var(--foreground);
+}
+
+.line2 {
+    color: var(--accent-red);
+}
+
+.line3 {
+    color: var(--foreground);
+}
+
+.actionArea {
+    display: flex;
+    justify-content: flex-start;
+}

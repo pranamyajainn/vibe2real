@@ -1,0 +1,31 @@
+.consequencesSection {
+    background-color: var(--background);
+    border-bottom: 2px solid var(--border-color);
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.causeEffect {
+    display: flex;
+    flex-direction: column;
+    border-left: 4px solid var(--accent-red);
+    padding-left: 2rem;
+}
+
+.cause {
+    margin-bottom: 0.5rem;
+}
+
+.effect h3 {
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    color: var(--foreground);
+    text-transform: none;
+    font-weight: 700;
+    letter-spacing: normal;
+}

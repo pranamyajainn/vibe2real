@@ -1,0 +1,77 @@
+.simulatorSection {
+    background-color: var(--background);
+    color: var(--foreground);
+    border-bottom: 2px solid var(--border-color);
+}
+
+.heading {
+    margin-bottom: 4rem;
+    font-size: clamp(2rem, 5vw, 4rem);
+}
+
+.modules {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-bottom: 4rem;
+}
+
+.module {
+    border: 1px solid var(--border-color);
+    padding: 2rem;
+    background-color: #050505;
+}
+
+.moduleHeader {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.moduleHeader h3 {
+    color: var(--foreground);
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    text-transform: uppercase;
+}
+
+.moduleDesc {
+    font-family: var(--font-mono), monospace;
+    color: #ccc;
+    font-size: 1.1rem;
+}
+
+.timeReality {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 4rem;
+}
+
+.timeBox {
+    border: 1px dashed #666;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.timeValue {
+    font-size: 2.5rem;
+    font-weight: bold;
+    font-family: var(--font-mono), monospace;
+}
+
+.antiTutorial {
+    background-color: var(--accent-red);
+    color: #fff;
+    padding: 2rem;
+    border: 1px solid var(--accent-red);
+}
+
+.antiTutorial .system-voice {
+    color: #fff;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 0.5rem;
+}

@@ -1,0 +1,47 @@
+.systemFooter {
+    background-color: #000;
+    border-top: 4px solid var(--border-color);
+    padding: 4rem 0;
+}
+
+.footerContent {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+    text-align: center;
+}
+
+@media (min-width: 768px) {
+    .footerContent {
+        flex-direction: row;
+        justify-content: space-between;
+        text-align: left;
+    }
+}
+
+.companyInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.companyName {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: var(--foreground);
+}
+
+.supportInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.email {
+    color: var(--foreground);
+    text-decoration: underline;
+    text-decoration-color: var(--accent-red);
+    text-underline-offset: 4px;
+}

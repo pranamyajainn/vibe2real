@@ -1,0 +1,85 @@
+/* Vibe2Real — Game Layout
+   Matches landing page: 40px grid, #000 bg, monospace header */
+
+.gameLayout {
+    min-height: 100vh;
+    background: #000;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+    color: #fff;
+    font-family: var(--font-mono), 'Space Mono', monospace;
+}
+
+.gameHeader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: rgba(0, 0, 0, 0.97);
+    border-bottom: 2px solid #333;
+    padding: 0.85rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logoMark {
+    font-size: 1rem;
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #fff;
+    font-family: var(--font-mono), monospace;
+}
+
+.logoMark em {
+    font-style: normal;
+    color: var(--accent-red, #ff3333);
+}
+
+.headerMeta {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+}
+
+/* system-voice style from globals */
+.xpDisplay {
+    color: var(--accent-red, #ff3333);
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    font-family: var(--font-mono), monospace;
+}
+
+.xpDisplay span {
+    color: var(--accent-yellow, #ffff00);
+    font-weight: 700;
+}
+
+.streakDisplay {
+    color: var(--accent-red, #ff3333);
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    font-family: var(--font-mono), monospace;
+}
+
+.streakDisplay span {
+    color: #ff6600;
+    font-weight: 700;
+}
+
+.anonId {
+    font-size: 0.7rem;
+    color: #444;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.gameContent {
+    padding-top: 60px;
+    min-height: 100vh;
+}

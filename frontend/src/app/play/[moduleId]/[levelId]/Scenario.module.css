@@ -1,0 +1,627 @@
+/* Scenario Screen — Core Gameplay
+   Landing page design language: big incident heading, monospace system output, brutalist action panel */
+
+.scenarioPage {
+    min-height: calc(100vh - 60px);
+    display: flex;
+    flex-direction: column;
+}
+
+/* Top bar */
+.topBar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    border-bottom: 2px solid #333;
+    background: rgba(0, 0, 0, 0.97);
+    position: sticky;
+    top: 60px;
+    z-index: 50;
+}
+
+.breadcrumb {
+    font-family: var(--font-mono), monospace;
+    font-size: 0.85rem;
+    color: #ff3333;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.breadcrumb a {
+    color: #555;
+    text-decoration: none;
+    transition: color 0.1s;
+}
+
+.breadcrumb a:hover {
+    color: #ccc;
+}
+
+.levelMeta {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.timer {
+    font-family: var(--font-mono), monospace;
+    font-size: 1rem;
+    color: #555;
+    letter-spacing: 0.1em;
+    font-weight: 700;
+}
+
+.timerWarning {
+    color: #ff6600 !important;
+}
+
+.timerCritical {
+    color: #ff3333 !important;
+    animation: blink 1s ease infinite;
+}
+
+@keyframes blink {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.4;
+    }
+}
+
+/* Split layout */
+.main {
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    flex: 1;
+    min-height: 0;
+}
+
+/* Left: Environment panel */
+.environmentPanel {
+    padding: 2.5rem;
+    border-right: 2px solid #333;
+    overflow-y: auto;
+}
+
+/* Consequences-style "DETECTED" block */
+.scenarioDesc {
+    margin-bottom: 2.5rem;
+    border-left: 2px solid #ff3333;
+    padding-left: 1.5rem;
+}
+
+/* system-voice */
+.scenarioDescTitle {
+    font-family: var(--font-mono), monospace;
+    font-size: 0.9rem;
+    color: #ff3333;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+    display: block;
+}
+
+/* Big stacked incident text — Hero line scale */
+.scenarioDescText {
+    font-size: clamp(1rem, 1.8vw, 1.4rem);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+    color: #fff;
+    white-space: pre-line;
+}
+
+.envTitle {
+    font-family: var(--font-mono), monospace;
+    font-size: 0.9rem;
+    color: #ff3333;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.envStatusDot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #ff3333;
+    animation: pulse 2s ease infinite;
+}
+
+.envStatusDot.stable {
+    background: #00ff88;
+    animation: none;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.3;
+    }
+}
+
+/* Simulator code block style */
+.codeBlock {
+    background: #050505;
+    border: 1px solid #333;
+    padding: 2rem;
+    font-family: var(--font-mono), monospace;
+    font-size: 0.85rem;
+    line-height: 1.7;
+    color: #888;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+.codeBlock .success {
+    color: #00ff88;
+}
+
+.codeBlock .error {
+    color: #ff3333;
+}
+
+.codeBlock .warning {
+    color: #ff6600;
+}
+
+.codeBlock .comment {
+    color: #333;
+}
+
+/* Degradation banner */
+.degradationBanner {
+    border: 2px solid;
+    padding: 1rem 1.5rem;
+    margin: 1.5rem 0;
+    font-family: var(--font-mono), monospace;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    animation: slideIn 0.3s ease;
+}
+
+/* Outcome log pane */
+.outcomePane {
+    margin-top: 2rem;
+    border: 1px solid #333;
+}
+
+.outcomePaneHeader {
+    background: #0a0a0a;
+    padding: 1rem 1.5rem;
+    font-family: var(--font-mono), monospace;
+    font-size: 0.9rem;
+    color: #ff3333;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border-bottom: 1px solid #222;
+}
+
+.outcomeEntry {
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid #0d0d0d;
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-6px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.outcomeEntryAction {
+    font-family: var(--font-mono), monospace;
+    font-size: 0.8rem;
+    color: #ff3333;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+}
+
+.outcomeEntryText {
+    font-family: var(--font-mono), monospace;
+    font-size: 0.85rem;
+    color: #888;
+    line-height: 1.7;
+    white-space: pre-wrap;
+}
+
+/* Right: Action panel */
+.actionPanel {
+    background: #050505;
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    border-left: 2px solid #333;
+}
+
+.actionPanelTitle {
+    font-family: var(--font-mono), monospace;
+    font-size: 0.9rem;
+    color: #ff3333;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #1a1a1a;
+    display: block;
+}
+
+.actionCategory {
+    margin-bottom: 2rem;
+}
+
+/* system-voice category label */
+.actionCategoryLabel {
+    font-family: var(--font-mono), monospace;
+    font-size: 0.85rem;
+    color: #ff3333;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+    display: block;
+}
+
+/* .btn style but thinner for actions */
+.actionBtn {
+    width: 100%;
+    background: transparent;
+    color: #ccc;
+    border: 1px solid #333;
+    padding: 0.9rem 1rem;
+    text-align: left;
+    font-family: var(--font-mono), monospace;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    cursor: pointer;
+    transition: all 0.1s ease;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 3px;
+    position: relative;
+}
+
+.actionBtn:hover {
+    background: #0d0d0d;
+    color: #fff;
+    border-color: #555;
+}
+
+.actionBtn:active {
+    transform: translate(1px, 1px);
+}
+
+.actionBtn.disabled {
+    opacity: 0.25;
+    cursor: not-allowed;
+}
+
+.actionBtn.disabled:hover {
+    background: transparent;
+    color: #ccc;
+    border-color: #333;
+    transform: none;
+}
+
+.actionBtnCost {
+    font-family: var(--font-mono), monospace;
+    font-size: 0.75rem;
+    color: #444;
+    letter-spacing: 0.08em;
+    flex-shrink: 0;
+}
+
+.actionProgress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    background: #ff3333;
+    transition: width 0.1s linear;
+}
+
+/* Stability meter */
+.blindActionCounter {
+    padding: 1rem 0;
+    font-family: var(--font-mono), monospace;
+    font-size: 0.8rem;
+    color: #ff3333;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.blindActionBar {
+    height: 3px;
+    background: #111;
+    margin-top: 0.4rem;
+    position: relative;
+}
+
+.blindActionFill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    transition: width 0.5s ease, background 0.3s ease;
+}
+
+/* Resolve button — .btn-accent scale */
+.resolveBtn {
+    margin-top: auto;
+    padding-top: 1.5rem;
+    border-top: 1px solid #222;
+}
+
+.resolveBtnInner {
+    width: 100%;
+    background: #ff3333;
+    color: #fff;
+    border: 2px solid #ff3333;
+    padding: 1.1rem;
+    font-family: var(--font-mono), monospace;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.1s ease;
+}
+
+.resolveBtnInner:hover {
+    opacity: 0.85;
+}
+
+.resolveBtnInner:active {
+    transform: translate(2px, 2px);
+}
+
+.resolveBtnInner:disabled {
+    background: transparent;
+    color: #333;
+    border-color: #222;
+    cursor: not-allowed;
+    opacity: 1;
+}
+
+.resolveBtnInner:disabled:hover {
+    transform: none;
+}
+
+.resolveBtnHint {
+    font-family: var(--font-mono), monospace;
+    font-size: 0.75rem;
+    color: #444;
+    letter-spacing: 0.05em;
+    margin-top: 0.75rem;
+    line-height: 1.5;
+    text-transform: uppercase;
+}
+
+/* ── Typewriter terminal ─────────────────────────────── */
+
+.termLine {
+    display: block;
+    color: #888;
+}
+
+.termLine.success {
+    color: #00ff88;
+}
+
+.termLine.error {
+    color: #ff3333;
+}
+
+.termLine.warning {
+    color: #ff6600;
+}
+
+.termLine.comment {
+    color: #2a2a2a;
+}
+
+.cursor {
+    display: inline-block;
+    color: #ff3333;
+    animation: cursorBlink 0.7s step-end infinite;
+    font-weight: 700;
+}
+
+@keyframes cursorBlink {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+}
+
+/* ── Resolution flash overlay ───────────────────────── */
+
+.resolvedOverlay {
+    position: fixed;
+    inset: 0;
+    z-index: 999;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: overlayIn 0.3s ease;
+}
+
+@keyframes overlayIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.resolvedOverlayInner {
+    text-align: center;
+}
+
+.resolvedOverlayText {
+    font-family: var(--font-mono), monospace;
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    color: #00ff88;
+    animation: flashGreen 0.5s ease infinite alternate;
+}
+
+@keyframes flashGreen {
+    from {
+        opacity: 1;
+        text-shadow: 0 0 40px rgba(0, 255, 136, 0.6);
+    }
+
+    to {
+        opacity: 0.7;
+        text-shadow: 0 0 80px rgba(0, 255, 136, 0.2);
+    }
+}
+
+.resolvedOverlaySub {
+    font-family: var(--font-mono), monospace;
+    font-size: 0.9rem;
+    color: #ff3333;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-top: 1.5rem;
+    animation: fadeIn 1s ease 0.5s both;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ── Resolve button — pulsing when ready ────────────── */
+
+.resolveBtnReady {
+    animation: resolvePulse 1.2s ease infinite !important;
+}
+
+@keyframes resolvePulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 51, 51, 0.4);
+    }
+
+    50% {
+        box-shadow: 0 0 0 8px rgba(255, 51, 51, 0);
+    }
+}
+
+/* ── Investigation gate hint ─────────────────────────── */
+
+.gateHint {
+    font-family: var(--font-mono), monospace;
+    font-size: 0.75rem;
+    color: #ff6600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #ff6600;
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+    background: rgba(255, 102, 0, 0.05);
+}
+
+/* ── Lock icon in disabled modify buttons ────────────── */
+
+.lockIcon {
+    font-size: 0.75rem;
+    opacity: 0.5;
+    flex-shrink: 0;
+}
+
+/* ── Restart button ──────────────────────────────────── */
+
+.restartBtn {
+    background: transparent;
+    color: #ff3333;
+    border: 1px solid #ff3333;
+    padding: 0.85rem 1.5rem;
+    font-family: var(--font-mono), monospace;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.1s ease;
+}
+
+.restartBtn:hover {
+    background: rgba(255, 51, 51, 0.08);
+}
+
+.restartBtn:active {
+    transform: translate(1px, 1px);
+}
+
+.restartHint {
+    font-family: var(--font-mono), monospace;
+    font-size: 0.7rem;
+    color: #333;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-top: 0.5rem;
+}
+
+/* ── Action button staggered entrance animation ─────── */
+
+.actionBtn {
+    animation: btnEntrance 0.4s ease both;
+}
+
+@keyframes btnEntrance {
+    from {
+        opacity: 0;
+        transform: translateX(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}

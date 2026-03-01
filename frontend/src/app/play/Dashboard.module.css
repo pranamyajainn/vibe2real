@@ -1,0 +1,277 @@
+/* Module Selection Dashboard /play
+   Landing page design language: big headline, grid bg, brutalist cards */
+
+.dashboard {
+    min-height: calc(100vh - 60px);
+    padding: 4rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Status bar — system-voice style */
+.statusBar {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 4rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #333;
+}
+
+.statusDot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #ff3333;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.3;
+    }
+}
+
+.statusText {
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+    color: #ff3333;
+    text-transform: uppercase;
+    font-family: var(--font-mono), monospace;
+}
+
+/* Hero-scale headline — matches landing page */
+.mainTitle {
+    font-size: clamp(2rem, 5vw, 4.5rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+}
+
+.mainTitle em {
+    font-style: normal;
+    color: #ff3333;
+}
+
+.subtitle {
+    font-family: var(--font-mono), monospace;
+    font-size: 1.1rem;
+    color: #ccc;
+    margin-bottom: 4rem;
+}
+
+/* Module grid */
+.modulesGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 0;
+    border: 2px solid #333;
+    margin-bottom: 3rem;
+}
+
+.moduleCard {
+    background: #050505;
+    padding: 2.5rem;
+    position: relative;
+    cursor: pointer;
+    transition: background 0.15s ease;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    border-right: 1px solid #333;
+}
+
+.moduleCard:last-child {
+    border-right: none;
+}
+
+.moduleCard:hover {
+    background: #0d0d0d;
+}
+
+.moduleCard.locked {
+    cursor: not-allowed;
+    opacity: 0.4;
+}
+
+.moduleCard.locked:hover {
+    background: #050505;
+}
+
+/* system-voice label */
+.moduleNumber {
+    color: #ff3333;
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-family: var(--font-mono), monospace;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.moduleTitleRow {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+/* matching Simulator.module.css heading scale */
+.moduleTitle {
+    font-size: clamp(1.4rem, 2.5vw, 2.2rem);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin: 0;
+}
+
+.lockIcon {
+    font-size: 1.2rem;
+    color: #333;
+    flex-shrink: 0;
+    margin-top: 0.25rem;
+}
+
+/* system-voice sub */
+.moduleSubtitle {
+    color: #ff3333;
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-family: var(--font-mono), monospace;
+    margin-bottom: 1rem;
+}
+
+/* matching moduleDesc pattern */
+.moduleDesc {
+    font-family: var(--font-mono), monospace;
+    color: #ccc;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.modulePrimitive {
+    font-family: var(--font-mono), monospace;
+    font-size: 0.8rem;
+    color: #444;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-top: 1px solid #1a1a1a;
+    padding-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.levelDots {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin-bottom: 0.75rem;
+}
+
+.levelDot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #1a1a1a;
+    border: 1px solid #333;
+    transition: background 0.2s ease;
+}
+
+.levelDot.completed {
+    background: #00ff88;
+    border-color: #00ff88;
+}
+
+.levelDot.current {
+    background: #ffff00;
+    border-color: #ffff00;
+    animation: pulse 1.5s ease infinite;
+}
+
+.levelDot.locked {
+    background: #111;
+    border-color: #222;
+}
+
+.tierBadge {
+    display: inline-block;
+    font-family: var(--font-mono), monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border: 1px solid currentColor;
+    margin-top: 0.5rem;
+}
+
+.tierBadge.guidance {
+    color: #555;
+}
+
+.tierBadge.independent {
+    color: #00ff88;
+}
+
+.tierBadge.efficient {
+    color: #00aaff;
+}
+
+.tierBadge.reliable {
+    color: #ffff00;
+}
+
+/* CTA — anti-tutorial block style from landing page */
+.ctaBanner {
+    background: #ff3333;
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.ctaText {
+    font-family: var(--font-mono), monospace;
+    font-size: 0.9rem;
+    color: #fff;
+    line-height: 1.5;
+}
+
+/* uses global .btn .btn-primary */
+.ctaBtn {
+    background: #000;
+    color: #fff;
+    border: 2px solid #fff;
+    padding: 1rem 2rem;
+    font-family: var(--font-mono), monospace;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.1s ease;
+    white-space: nowrap;
+}
+
+.ctaBtn:hover {
+    background: #fff;
+    color: #000;
+}
+
+.ctaBtn:active {
+    transform: translate(2px, 2px);
+}
