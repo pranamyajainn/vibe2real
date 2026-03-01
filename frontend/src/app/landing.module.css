@@ -1,0 +1,970 @@
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Bebas+Neue&family=Inter:wght@400;700;900&display=swap');
+
+/* GLOBAL RESETS FOR LANDING ONLY */
+.landingRoot {
+    background: #050505;
+    color: #eaeaea;
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+    box-sizing: border-box;
+    overflow-x: hidden;
+    position: relative;
+}
+
+.landingRoot * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.landingRoot a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.landingRoot ul {
+    list-style: none;
+}
+
+/* SCANLINE OVERLAY */
+.scanline {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9999;
+    pointer-events: none;
+    background: repeating-linear-gradient(0deg,
+            transparent, transparent 2px,
+            rgba(0, 0, 0, 0.08) 2px, rgba(0, 0, 0, 0.08) 4px);
+}
+
+/* Typography Helpers */
+.fontDisplay {
+    font-family: 'Bebas Neue', sans-serif;
+}
+
+.fontMono {
+    font-family: 'Share Tech Mono', monospace;
+}
+
+.textRed {
+    color: #E8000D;
+}
+
+.textMuted {
+    color: #666666;
+}
+
+/* ---- ANIMATIONS ---- */
+.reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.revealed {
+    opacity: 1;
+    transform: none;
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@keyframes gridShift {
+    from {
+        background-position: 0 0;
+    }
+
+    to {
+        background-position: 60px 60px;
+    }
+}
+
+@keyframes blink {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes textGlitch {
+
+    0%,
+    90% {
+        transform: none;
+        opacity: 1;
+    }
+
+    92% {
+        transform: translate(-3px, 1px);
+    }
+
+    94% {
+        transform: translate(3px, -1px);
+    }
+
+    96%,
+    100% {
+        transform: none;
+    }
+}
+
+@keyframes ticker {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* ---- NAV ---- */
+.nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(5, 5, 5, 0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid #1a1a1a;
+    z-index: 100;
+    padding: 1rem 2.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    color: #E8000D;
+    letter-spacing: 0.1em;
+}
+
+.navStatus {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #E8000D;
+    display: flex;
+    align-items: center;
+}
+
+.statusDot {
+    display: inline-block;
+    margin-right: 0.25rem;
+    animation: blink 1s step-end infinite;
+}
+
+.navBtn {
+    background: #E8000D;
+    color: #fff;
+    border: none;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.55rem 1.2rem;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.navBtn:hover {
+    background: #ff1a23;
+}
+
+/* ---- HERO ---- */
+.hero {
+    min-height: 100vh;
+    padding: 8rem 2.5rem 4rem;
+    position: relative;
+    display: flex;
+    align-items: center;
+    background-image:
+        linear-gradient(rgba(232, 0, 13, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(232, 0, 13, 0.05) 1px, transparent 1px);
+    background-size: 60px 60px;
+    animation: gridShift 20s linear infinite;
+}
+
+.hero::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 40vw;
+    height: 40vw;
+    background: radial-gradient(ellipse at top right, rgba(232, 0, 13, 0.15), transparent 70%);
+    pointer-events: none;
+}
+
+.heroInner {
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 4rem;
+    position: relative;
+    z-index: 10;
+}
+
+.heroLeft {
+    flex: 1;
+    min-width: 0;
+}
+
+.heroRight {
+    flex: 0 0 48%;
+    max-width: 48%;
+    padding-top: 4rem;
+}
+
+.heroImage {
+    width: 90%;
+    margin: 0 auto;
+    height: auto;
+    display: block;
+    object-fit: contain;
+    mix-blend-mode: lighten;
+}
+
+.heroTag {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.72rem;
+    color: #E8000D;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    animation: fadeUp 0.6s ease both;
+    margin-bottom: 2rem;
+}
+
+.heroHeading {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(4.5rem, 10vw, 11rem);
+    line-height: 0.9;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    animation: fadeUp 0.6s 0.1s ease both;
+    position: relative;
+    z-index: 10;
+}
+
+.glitchWrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.glitchWrapper::before,
+.glitchWrapper::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.glitchWrapper::before {
+    color: #E8000D;
+    clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+    animation: textGlitch 4s infinite;
+}
+
+.glitchWrapper::after {
+    color: #00f0ff;
+    opacity: 0.4;
+    clip-path: polygon(0 55%, 100% 55%, 100% 100%, 0 100%);
+    animation: textGlitch 4s infinite reverse;
+}
+
+.heroSub {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1rem;
+    color: #666;
+    max-width: 560px;
+    line-height: 1.8;
+    margin-bottom: 3rem;
+    animation: fadeUp 0.6s 0.2s ease both;
+    position: relative;
+    z-index: 10;
+}
+
+.heroActions {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 4rem;
+    animation: fadeUp 0.6s 0.3s ease both;
+    position: relative;
+    z-index: 10;
+}
+
+.btnPrimary {
+    background: #E8000D;
+    color: #fff;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 1rem 2.2rem;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 0 30px rgba(232, 0, 13, 0.4);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s ease;
+    display: inline-flex;
+    justify-content: center;
+}
+
+.btnPrimary::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.4s ease, height 0.4s ease, opacity 0.4s ease;
+}
+
+.btnPrimary:hover {
+    transform: translateY(-2px);
+}
+
+.btnPrimary:hover::before {
+    width: 300px;
+    height: 300px;
+    opacity: 0;
+}
+
+.btnGhost {
+    background: transparent;
+    color: #666;
+    border: 1px solid #2a2a2a;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 1rem 2.2rem;
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+    display: inline-flex;
+}
+
+.btnGhost:hover {
+    border-color: #E8000D;
+    color: #EAEAEA;
+}
+
+.heroStats {
+    display: flex;
+    gap: 3rem;
+    animation: fadeUp 0.6s 0.4s ease both;
+}
+
+.statItem {
+    display: flex;
+    flex-direction: column;
+}
+
+.statVal {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3.5rem;
+    color: #E8000D;
+    line-height: 1;
+}
+
+.statLabel {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.72rem;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+/* ---- TICKER ---- */
+.ticker {
+    background: #E8000D;
+    padding: 0.6rem 0;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.tickerTrack {
+    display: inline-block;
+    white-space: nowrap;
+    animation: ticker 20s linear infinite;
+}
+
+.tickerText {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.8rem;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    padding-right: 2rem;
+}
+
+/* ---- SECTION HELPERS ---- */
+.secBg0 {
+    background: #0D0D0D;
+}
+
+.secBg1 {
+    background: #050505;
+}
+
+.secPad {
+    padding: 6rem 2.5rem;
+}
+
+.bTop {
+    border-top: 1px solid #1a1a1a;
+}
+
+.bBot {
+    border-bottom: 1px solid #1a1a1a;
+}
+
+.secLabel {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.75rem;
+    font-weight: 400;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: #666;
+    margin-bottom: 1rem;
+}
+
+.secTitle {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3rem, 6vw, 6rem);
+    line-height: 0.95;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    margin-bottom: 4rem;
+}
+
+/* ---- COLLAPSE ---- */
+.collapseGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+}
+
+.terminalBox {
+    background: #000;
+    border: 1px solid #222;
+    border-radius: 4px;
+    box-shadow: 0 0 60px rgba(232, 0, 13, 0.1);
+}
+
+.terminalBar {
+    background: #1a1a1a;
+    padding: 0.6rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.tDot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+
+.tRed {
+    background: #E8000D;
+}
+
+.tYel {
+    background: #f5a623;
+}
+
+.tGrn {
+    background: #2ecc71;
+    opacity: 0.4;
+}
+
+.terminalTitle {
+    margin-left: auto;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.65rem;
+    color: #666;
+}
+
+.terminalBody {
+    padding: 1.5rem;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.85rem;
+    line-height: 2;
+}
+
+.tLine {
+    opacity: 0;
+    animation: fadeUp 0.1s forwards;
+}
+
+.tLine1 {
+    animation-delay: 600ms;
+}
+
+.tLine2 {
+    animation-delay: 800ms;
+}
+
+.tLine3 {
+    animation-delay: 1000ms;
+}
+
+.tLine4 {
+    animation-delay: 1200ms;
+}
+
+.tLine5 {
+    animation-delay: 1400ms;
+}
+
+.tLine6 {
+    animation-delay: 1600ms;
+}
+
+.tLine7 {
+    animation-delay: 1800ms;
+}
+
+.tLine8 {
+    animation-delay: 2000ms;
+}
+
+.tLine9 {
+    animation-delay: 2200ms;
+}
+
+.tLine10 {
+    animation-delay: 2400ms;
+    height: 1.9em;
+}
+
+.tLine11 {
+    animation-delay: 2600ms;
+}
+
+.tLine12 {
+    animation-delay: 2800ms;
+}
+
+.collapseList {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.collapseItem {
+    border: 1px solid #1a1a1a;
+    background: #0a0a0a;
+    padding: 1.2rem;
+    display: flex;
+    gap: 1rem;
+    transition: all 0.25s ease;
+}
+
+.collapseItem:hover {
+    border-color: #E8000D;
+    transform: translateX(4px);
+}
+
+.collapseNum {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #E8000D;
+}
+
+.collapseContent {
+    flex: 1;
+}
+
+.collapseItemTitle {
+    font-size: 0.85rem;
+    color: #eaeaea;
+    margin-bottom: 0.3rem;
+    font-weight: 700;
+}
+
+.collapseItemSub {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1rem;
+    line-height: 1.8;
+    color: #666;
+}
+
+/* ---- LEVELS ---- */
+.levelsGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: #1a1a1a;
+    /* Acts as border gap */
+    border: 1px solid #1a1a1a;
+}
+
+.levelCard {
+    background: #0D0D0D;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.2s;
+}
+
+.levelCard:hover {
+    background: #141414;
+}
+
+.levelCard::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: #E8000D;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+}
+
+.levelCard:hover::before {
+    transform: scaleX(1);
+}
+
+.levelBGNum {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 5rem;
+    color: #1a1a1a;
+    line-height: 0.8;
+    z-index: 0;
+}
+
+.levelContent {
+    position: relative;
+    z-index: 10;
+}
+
+.levelTag {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.75rem;
+    color: #E8000D;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.levelTitle {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.2rem;
+    line-height: 1;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+}
+
+.levelDesc {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.72rem;
+    color: #666;
+    line-height: 1.8;
+}
+
+/* ---- EVIDENCE ---- */
+.evidenceGrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+}
+
+.evItem {
+    display: flex;
+    flex-direction: column;
+}
+
+.evVal {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 5rem;
+    color: #E8000D;
+    line-height: 1;
+}
+
+.evLabel {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    color: #666;
+    text-transform: uppercase;
+}
+
+/* ---- LEADERBOARD ---- */
+.boardTable {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.8rem;
+}
+
+.boardTable th {
+    font-size: 0.62rem;
+    color: #666;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 0.8rem 1rem;
+    border-bottom: 1px solid #1a1a1a;
+    text-align: left;
+}
+
+.boardTable td {
+    padding: 1rem;
+    border-bottom: 1px solid #0f0f0f;
+}
+
+.boardTable tr {
+    transition: background 0.2s;
+}
+
+.boardTable tr:hover {
+    background: #0d0d0d;
+}
+
+.rankBadge {
+    display: inline-block;
+    background: #333;
+    color: #fff;
+    font-size: 0.6rem;
+    padding: 0.1rem 0.4rem;
+}
+
+.rankBadge.isTop {
+    background: #E8000D;
+}
+
+/* ---- PRICING ---- */
+.pricingBox {
+    max-width: 560px;
+    border: 1px solid #2a2a2a;
+    background: #0a0a0a;
+    padding: 3rem;
+    box-shadow: 0 0 80px rgba(232, 0, 13, 0.08);
+    position: relative;
+}
+
+.pricingBox::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: #E8000D;
+}
+
+.priceWrap {
+    margin-bottom: 0.5rem;
+}
+
+.currency {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1.2rem;
+    color: #666;
+    vertical-align: super;
+}
+
+.amount {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 6rem;
+    line-height: 1;
+    color: #eaeaea;
+}
+
+.priceSub {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.65rem;
+    color: #666;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    display: block;
+}
+
+.priceList {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 3rem;
+}
+
+.priceList li {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.85rem;
+    line-height: 2;
+    color: #666;
+    border-bottom: 1px solid #111;
+    padding: 0.8rem 0;
+}
+
+.priceList li span {
+    color: #E8000D;
+    margin-right: 0.5rem;
+}
+
+.priceList li:last-child {
+    border-bottom: none;
+}
+
+.btnPricing {
+    width: 100%;
+}
+
+/* ---- FAQ ---- */
+.faqGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: #1a1a1a;
+    border: 1px solid #1a1a1a;
+}
+
+.faqItem {
+    background: #0D0D0D;
+    padding: 2rem;
+}
+
+.faqQ {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.78rem;
+    color: #E8000D;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.5rem;
+}
+
+.faqA {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.9rem;
+    color: #666;
+    line-height: 1.8;
+}
+
+/* ---- FOOTER ---- */
+.footer {
+    background: #0D0D0D;
+    border-top: 1px solid #1a1a1a;
+    padding: 2rem 2.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.72rem;
+    color: #666;
+    line-height: 1.5;
+}
+
+/* ---- MEDIA QUERIES ---- */
+@media (max-width: 1280px) {
+    .heroImage {
+        width: 85%;
+    }
+}
+
+@media (max-width: 1024px) {
+    .heroInner {
+        gap: 2rem;
+    }
+
+    .heroRight {
+        flex: 0 0 44%;
+        max-width: 44%;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .collapseGrid,
+    .levelsGrid,
+    .evidenceGrid,
+    .faqGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .heroInner {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .heroLeft {
+        width: 100%;
+        order: 1;
+    }
+
+    .heroRight {
+        flex: 1 1 auto;
+        width: 100%;
+        max-width: 100%;
+        order: 2;
+        margin-top: 2.5rem;
+        padding-top: 0;
+    }
+
+    .heroImage {
+        max-width: 480px;
+        margin: 0 auto;
+    }
+
+    .heroStats {
+        flex-wrap: wrap;
+        gap: 1.5rem;
+    }
+
+    .nav {
+        padding: 1rem;
+    }
+
+    .secPad {
+        padding: 4rem 1.5rem;
+    }
+
+    .hero {
+        padding: 7rem 1.5rem 3rem;
+    }
+
+    .footer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+}
