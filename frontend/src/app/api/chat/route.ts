@@ -28,7 +28,7 @@ Answer their questions specifically about this concept so they feel confident be
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                model: 'llama3-8b-8192', // Fast, intelligent model for chat
+                model: 'llama-3.3-70b-versatile', // Fast, intelligent model for chat
                 messages: [systemMessage, ...messages],
                 temperature: 0.7,
                 max_tokens: 800,
