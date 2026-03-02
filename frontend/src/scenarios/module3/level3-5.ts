@@ -18,6 +18,15 @@ const LEVEL_3_5: ScenarioDefinition = {
     falseConfidencePhaseEnd: 0.40,
     failurePhaseEnd: 0.60,
     insightPhaseEnd: 0.72,
+    dispatchMessage: "site is completely down. been down 10 mins. what do i do",
+    narratorScript: {
+        "opening": "This last one is yours. I'm stepping back. You have everything you need.",
+        "actions": {},
+        "resolution": "You didn't need me on that one. That's the whole point of this."
+    },
+    momentumTease: "All 15 cases closed. Your file is ready.",
+    patternBreak: 'silent_senior',
+
 
     initialAppState: (surface) => `
 $ curl http://server:${surface.portNumber}/health

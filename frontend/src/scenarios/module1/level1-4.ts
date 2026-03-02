@@ -18,6 +18,20 @@ const LEVEL_1_4: ScenarioDefinition = {
     falseConfidencePhaseEnd: 0.45,
     failurePhaseEnd: 0.65,
     insightPhaseEnd: 0.75,
+    dispatchMessage: "the publish button does nothing. client is trying to go live RIGHT NOW",
+    narratorScript: {
+        "opening": "Button exists. Handler attached. Click fires. Nothing happens. No error. The component is running — but it's checking something that's never true. Find the condition that's always failing.",
+        "actions": {
+            "inspect_console": "No errors on click. Handler fired. It checks isAdmin before acting — isAdmin is undefined. Undefined is falsy. Action never runs.",
+            "inspect_network": "Network request fired. Check the payload.",
+            "read_click_handler": "if (isAdmin) { doThing() }. isAdmin is a prop. Parent never passes it. Undefined. Condition never passes.",
+            "check_props": "Props don't match expected types.",
+            "check_parent_component": "Parent renders <Button onClick={handle} /> — no isAdmin prop passed. The component expects it. Never gets it."
+        },
+        "resolution": "isAdmin passed from parent. Button works. Silent failures from missing props are invisible without reading what the component actually needs to run."
+    },
+    momentumTease: "Next case: No import errors. No console output. The page is completely white. Something failed silently.",
+
 
     initialAppState: (surface) => `
 // UI: Button renders correctly. Click = nothing.

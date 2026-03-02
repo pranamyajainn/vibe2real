@@ -19,6 +19,18 @@ const LEVEL_3_3: ScenarioDefinition = {
     falseConfidencePhaseEnd: 0.40,
     failurePhaseEnd: 0.60,
     insightPhaseEnd: 0.72,
+    dispatchMessage: "that last commit broke auth for every user. we need to undo it NOW",
+    narratorScript: {
+        "opening": "A bad commit is live right now. Users are hitting it. You need to undo it without breaking the commits that came after. Read the git log before you touch anything — order matters here.",
+        "actions": {
+            "git_show_commit": "Git log: commit a7f3c2e introduced the broken change. Two commits came after. Undo a7f3c2e specifically without removing the later work.",
+            "understand_revert": "a7f3c2e changed auth middleware to skip token validation. Every request unauthorized since. This is the exact commit.",
+            "check_git_log_after": "Server logs: 401s on every authenticated route since the bad commit timestamp. Confirmed."
+        },
+        "resolution": "git revert undoes the commit safely. Creates a new commit reversing the change — doesn't rewrite history, doesn't break what came after."
+    },
+    momentumTease: "Next case: Build passes locally. Fails in production every time. Same code. Different outcome. The difference is in the config.",
+
 
     initialAppState: (surface) => `
 $ # Production error rate spiked 4 minutes ago.

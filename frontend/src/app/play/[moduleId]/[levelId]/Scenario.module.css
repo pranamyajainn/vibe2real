@@ -79,13 +79,14 @@
     grid-template-columns: 1fr 360px;
     flex: 1;
     min-height: 0;
+    align-items: start;
 }
 
 /* Left: Environment panel */
 .environmentPanel {
     padding: 2.5rem;
     border-right: 2px solid #333;
-    overflow-y: auto;
+    overflow-y: visible;
 }
 
 /* Consequences-style "DETECTED" block */
@@ -254,6 +255,9 @@
     flex-direction: column;
     overflow-y: auto;
     border-left: 2px solid #333;
+    position: sticky;
+    top: 4rem;
+    height: calc(100vh - 4rem);
 }
 
 .actionPanelTitle {
@@ -623,5 +627,349 @@
     to {
         opacity: 1;
         transform: translateX(0);
+    }
+}
+
+/* ── Detective Theme Additions ─────────────────────── */
+
+.dispatchMessage {
+    background: #111;
+    border: 1px solid #1a1a1a;
+    padding: 1rem 1.2rem;
+    margin-bottom: 1rem;
+    border-left: 4px solid #4A154B;
+}
+
+.dispatchHeader {
+    font-family: var(--font-mono), monospace;
+    font-size: 0.7rem;
+    color: #666;
+    margin-bottom: 0.5rem;
+}
+
+.dispatchText {
+    font-family: var(--font-mono), monospace;
+    font-size: 0.9rem;
+    color: #EAEAEA;
+    line-height: 1.4;
+}
+
+.narratorBox {
+    background: #0a0a0a;
+    border-left: 3px solid #E8000D;
+    padding: 1.2rem 1.5rem;
+    margin-bottom: 2rem;
+    min-height: 80px;
+    position: sticky;
+    top: 5rem;
+    z-index: 10;
+}
+
+.narratorBox.warning {
+    border-left-color: #f5a623;
+}
+
+.narratorBox.critical {
+    border-left-color: #E8000D;
+}
+
+.narratorBox.silent {
+    background: #000;
+    border: 1px solid #1a1a1a;
+    border-left: 1px solid #1a1a1a;
+}
+
+.narratorLabel {
+    font-family: var(--font-mono), monospace;
+    color: #E8000D;
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    margin-bottom: 0.75rem;
+    display: block;
+}
+
+.narratorLabel.silent {
+    color: #666;
+}
+
+.narratorText {
+    font-family: var(--font-mono), monospace;
+    font-size: 1rem;
+    color: #EAEAEA;
+    line-height: 1.8;
+}
+
+/* Time Pressure Break */
+.timePressureText {
+    font-family: 'Bebas Neue', var(--font-sans), sans-serif;
+    font-size: 3rem;
+    color: #E8000D;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+/* Clue Tracker */
+.clueFlash {
+    font-family: 'Bebas Neue', var(--font-sans), sans-serif;
+    font-size: 1.5rem;
+    color: #E8000D;
+    animation: fadeOut 1s forwards;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+
+    80% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        display: none;
+    }
+}
+
+/* Deduction Moment / Articulation Gate */
+.deductionContainer {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.deductionInput {
+    background: #000;
+    border: 1px solid #2a2a2a;
+    color: #EAEAEA;
+    font-family: var(--font-mono), monospace;
+    font-size: 1rem;
+    padding: 0.6rem 1rem;
+    flex: 1;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.deductionInput:focus {
+    border-color: #E8000D;
+}
+
+.deductionBtn {
+    background: #E8000D;
+    color: #fff;
+    font-family: var(--font-mono), monospace;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    border: none;
+    padding: 0 1.5rem;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.deductionBtn:hover {
+    opacity: 0.8;
+}
+
+.deductionBtn:disabled {
+    background: #333;
+    color: #666;
+    cursor: not-allowed;
+}
+
+/* Overlays */
+.caseClosedOverlay,
+.momentumScreenOverlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: #050505;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.caseTitle {
+    font-family: 'Bebas Neue', var(--font-sans), sans-serif;
+    font-size: 5rem;
+    color: #EAEAEA;
+    letter-spacing: 0.05em;
+    margin-bottom: 1rem;
+}
+
+.caseSummary {
+    font-family: var(--font-mono), monospace;
+    font-size: 1.1rem;
+    color: #EAEAEA;
+    max-width: 600px;
+    text-align: center;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+.xpAward {
+    font-family: 'Bebas Neue', var(--font-sans), sans-serif;
+    font-size: 2.5rem;
+    color: #E8000D;
+}
+
+/* Momentum Screen */
+.momentumStreak {
+    font-family: 'Bebas Neue', var(--font-sans), sans-serif;
+    font-size: 3rem;
+    color: #E8000D;
+    margin-bottom: 2rem;
+}
+
+.momentumStreak.broken {
+    color: #666;
+}
+
+.momentumTease {
+    font-family: var(--font-mono), monospace;
+    font-size: 1rem;
+    color: #666;
+    max-width: 480px;
+    text-align: center;
+    line-height: 1.7;
+    margin-bottom: 4rem;
+}
+
+.momentumProgressBarContainer {
+    width: 100%;
+    max-width: 480px;
+    height: 3px;
+    background: #1a1a1a;
+    position: relative;
+    margin-bottom: 0.5rem;
+}
+
+.momentumProgressBarFill {
+    height: 100%;
+    background: #E8000D;
+    transition: width 0.5s ease;
+}
+
+.momentumProgressLabel {
+    font-family: var(--font-mono), monospace;
+    font-size: 0.7rem;
+    color: #666;
+    text-transform: uppercase;
+}
+
+.topBarClueCount {
+    font-family: var(--font-mono), monospace;
+    font-size: 0.8rem;
+    color: #E8000D;
+    letter-spacing: 0.1em;
+    font-weight: bold;
+}
+
+.redHerringBtn {
+    background: #E8000D !important;
+    color: #fff !important;
+    border-color: #E8000D !important;
+}
+
+.redHerringBtn:hover {
+    background: #ff5555 !important;
+}
+
+/* Action Tooltip Container */
+.actionBtnWrapper {
+    position: relative;
+    margin-bottom: 3px;
+    display: flex;
+    flex-direction: column;
+}
+
+.actionBtnWrapper:hover .actionTooltip {
+    opacity: 1;
+}
+
+.actionTooltip {
+    font-family: var(--font-mono), monospace;
+    font-size: 0.7rem;
+    color: #666;
+    margin-top: 0.2rem;
+    margin-bottom: 0.5rem;
+    opacity: 0;
+    transition: opacity 0.2s ease 0.2s;
+    height: 0;
+    overflow: hidden;
+}
+
+.actionBtnWrapper:hover .actionTooltip {
+    height: auto;
+    overflow: visible;
+}
+
+/* SENIOR Intro Block */
+.seniorIntroBlock {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px dotted #333;
+    animation: fadeIn 0.5s ease;
+}
+
+.seniorIntroTitle {
+    font-family: var(--font-mono), monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: #666;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+}
+
+.seniorIntroText {
+    font-family: var(--font-mono), monospace;
+    font-size: 0.85rem;
+    color: #666;
+    line-height: 1.6;
+}
+
+/* Narrator Box Wrappers */
+.desktopNarratorWrapper {
+    display: block;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: #050505;
+    padding-bottom: 1.5rem;
+    margin-bottom: 0.5rem;
+    /* Cover up the scroll behind it */
+    box-shadow: 0 10px 10px -10px #050505;
+}
+
+.mobileNarratorWrapper {
+    display: none;
+}
+
+/* Responsive Overrides */
+@media (max-width: 768px) {
+    .main {
+        grid-template-columns: 1fr;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .actionPanel {
+        position: static;
+        height: auto;
+        overflow-y: visible;
+        border-left: none;
+        border-top: 2px solid #333;
+    }
+
+    .desktopNarratorWrapper {
+        display: none !important;
+    }
+
+    .mobileNarratorWrapper {
+        display: block;
+        margin-bottom: 2.5rem;
     }
 }

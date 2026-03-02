@@ -19,6 +19,20 @@ const LEVEL_1_3: ScenarioDefinition = {
     falseConfidencePhaseEnd: 0.50,
     failurePhaseEnd: 0.65,
     insightPhaseEnd: 0.75,
+    dispatchMessage: "the dashboard is showing the wrong user's name. two clients noticed. this is bad",
+    narratorScript: {
+        "opening": "200 from the API. Network tab shows success. UI shows wrong data. The request worked — the reading didn't. Check what the response actually contains versus what the code thinks it contains.",
+        "actions": {
+            "inspect_network": "Response: { user: { name: 'Alex' } }. The data is correct. Something broke between receiving it and displaying it.",
+            "inspect_console": "No errors. Component rendered. But check what it's actually pulling from the response — the structure matters.",
+            "read_transform_code": "Code reads response.name. Structure is { user: { name } }. Should be response.user.name. One level off.",
+            "check_api_structure": "The structure is different from what frontend expects.",
+            "check_backend_route": "Backend sends { user: { name, role } }. Shape is correct. The bug is on the frontend reading it."
+        },
+        "resolution": "Accessor fixed to response.user.name. The API was always sending the right data. The code was reading from the wrong level of the object."
+    },
+    momentumTease: "Next case: A button exists. The click handler is attached. Nothing happens on click. The component has everything — except one thing it never received.",
+
 
     initialAppState: (surface) => `
 // UI displays: "Welcome, undefined"

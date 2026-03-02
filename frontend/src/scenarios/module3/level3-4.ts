@@ -18,6 +18,18 @@ const LEVEL_3_4: ScenarioDefinition = {
     falseConfidencePhaseEnd: 0.45,
     failurePhaseEnd: 0.65,
     insightPhaseEnd: 0.75,
+    dispatchMessage: "build works on your machine but fails every time in CI. release is delayed",
+    narratorScript: {
+        "opening": "Builds locally. Fails in production. Every time. Same code. The difference is in how each environment resolves paths — and that lives in the config, not the code.",
+        "actions": {
+            "read_error_log": "Code imports from @components/Button. Alias works locally via webpack config. Production may not have that config.",
+            "compare_configs": "No relevant env vars. Build configuration issue — the alias resolving @components doesn't exist in the production build.",
+            "check_next_config": "next.config.js in production is missing the webpack alias block. It was never committed to the repo."
+        },
+        "resolution": "Webpack alias added to next.config.js. Path aliases that work locally but fail in CI always mean the config wasn't committed or wasn't applied to the production build."
+    },
+    momentumTease: "Next case: App is completely down. Multiple processes running. Redeploying won't fix this one.",
+
 
     initialAppState: (surface) => `
 # Deployment log (CI/CD):

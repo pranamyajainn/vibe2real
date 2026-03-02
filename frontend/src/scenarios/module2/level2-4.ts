@@ -18,6 +18,19 @@ const LEVEL_2_4: ScenarioDefinition = {
     falseConfidencePhaseEnd: 0.50,
     failurePhaseEnd: 0.65,
     insightPhaseEnd: 0.75,
+    dispatchMessage: "CORS error blocking everything. i added the header it's still broken",
+    narratorScript: {
+        "opening": "CORS error. Textbook fix: add the CORS header. That's what everyone does first.",
+        "actions": {
+            "read_console_error": "CORS error on POST /api/data. Preflight OPTIONS request failed. Adding a header to POST doesn't handle OPTIONS.",
+            "inspect_actual_response": "OPTIONS /api/data — 404. Server returned 404 on the preflight. No OPTIONS handler exists.",
+            "read_backend_route": "Route only defines app.post('/api/data'). CORS preflight sends OPTIONS first. No OPTIONS handler — preflight hits 404 — browser blocks everything."
+        },
+        "resolution": "Missing OPTIONS handler found. CORS errors are almost never fixed by adding a header — you have to understand what the preflight request actually needs."
+    },
+    momentumTease: "Next case: Data is 24 hours old. No errors. The app is working perfectly. The evidence is in one specific place most people never check.",
+    patternBreak: 'red_herring',
+
 
     initialAppState: (surface) => `
 // Console:

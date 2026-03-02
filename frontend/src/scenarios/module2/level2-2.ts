@@ -18,6 +18,19 @@ const LEVEL_2_2: ScenarioDefinition = {
     falseConfidencePhaseEnd: 0.50,
     failurePhaseEnd: 0.65,
     insightPhaseEnd: 0.75,
+    dispatchMessage: "loading spinner won't stop. users think it's broken and are leaving",
+    narratorScript: {
+        "opening": "Spinner never stops. No error visible. The fetch ran — but something in how the code handled what came back caused it to hang. Check what the server actually returned.",
+        "actions": {
+            "inspect_network": "POST /api/login — Status 401. Request completed. App is still spinning because the code never checked if the response was OK.",
+            "inspect_console": "No errors thrown. Fetch resolved — didn't reject. Code is waiting for user data but got an error object instead.",
+            "read_fetch_code": "fetch().then(r => r.json()) — no res.ok check. A 401 still resolves the promise. Code reads the body and hangs.",
+            "check_auth_token": "Auth token is missing or expired in local storage."
+        },
+        "resolution": "res.ok check added. A fetch resolving doesn't mean success. You have to verify the status code yourself — always."
+    },
+    momentumTease: "Next case: Eight seconds to load a page. The frontend looks fine. The slowdown is somewhere else entirely.",
+
 
     initialAppState: (surface) => `
 // UI: Loading spinner spinning indefinitely.

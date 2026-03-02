@@ -80,6 +80,16 @@ export interface ScenarioDefinition {
     failurePhaseEnd: number;
     insightPhaseEnd: number;
 
+    // Detective Layer (Narrator) additions
+    dispatchMessage: string;
+    narratorScript: {
+        opening: string;
+        actions: Record<string, string>;
+        resolution: string;
+    };
+    momentumTease: string;
+    patternBreak?: 'time_pressure' | 'red_herring' | 'silent_senior';
+
     // Initial environment state
     initialAppState: (surface: RandomizedSurface) => string;
 

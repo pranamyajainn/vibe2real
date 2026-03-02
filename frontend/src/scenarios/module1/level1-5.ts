@@ -19,6 +19,20 @@ const LEVEL_1_5: ScenarioDefinition = {
     falseConfidencePhaseEnd: 0.40,
     failurePhaseEnd: 0.65,
     insightPhaseEnd: 0.75,
+    dispatchMessage: "whole page went white after your last push. no error showing anywhere",
+    narratorScript: {
+        "opening": "No errors. Import succeeded. Page is completely white. Something about this component's dependencies is incompatible with the environment — and it's failing without saying a word.",
+        "actions": {
+            "inspect_console": "No runtime error in the browser. Check the terminal where the dev server runs — some warnings never reach the browser console.",
+            "inspect_element": "DOM shows an error related to missing module.",
+            "read_package_json": "Component uses a library requiring React 18. Check what version of React is actually installed here.",
+            "check_peer_deps": "package.json: React 17. Library peer requirements: React 18+. Loads silently. Renders nothing.",
+            "check_component_code": "No relevant env vars. This is a package dependency issue, not config."
+        },
+        "resolution": "Peer dependency mismatch identified. Library needed React 18, got 17. A white screen with no console error almost always means a silent render failure from an incompatible dependency."
+    },
+    momentumTease: "Module 2 begins. You've been tracing requests. Now you read raw output with no assistance. The cases get harder.",
+
 
     initialAppState: (surface) => `
 // Blank white page. No errors in code.

@@ -20,6 +20,20 @@ const LEVEL_1_1: ScenarioDefinition = {
     falseConfidencePhaseEnd: 0.40,
     failurePhaseEnd: 0.65,
     insightPhaseEnd: 0.75,
+    dispatchMessage: "hey why is the site completely blank on my end?? client demo is in 20 mins",
+    narratorScript: {
+        "opening": "Blank page in production, works perfectly local. Classic. The browser saw something it didn't like the moment it loaded — start by asking it what.",
+        "actions": {
+            "inspect_console": "TypeError: Failed to fetch. The app tried to call an API URL that came back as undefined. That URL was never set in this environment.",
+            "inspect_network": "GET undefined/api/users. The request went to the literal word 'undefined'. The variable holding the API URL is missing in production.",
+            "check_env": "Local has VITE_API_BASE. Production has nothing. The app works locally because your .env file is there. Production never got it.",
+            "read_code": "Code reads from process.env.VITE_API_BASE. That variable doesn't exist in production. URL becomes undefined. You know what's missing.",
+            "check_backend_code": "Backend is running correctly. The problem is not in the backend code."
+        },
+        "resolution": "Environment variable set. The app knows where its API lives now. This is the most common production mystery — because nobody checks the environment."
+    },
+    momentumTease: "Next case: A form submitted successfully. A success message appeared. The database is empty. Something swallowed the data between the browser and the server.",
+
 
     initialAppState: (surface) => `
 // App running at http://localhost:${surface.portNumber}/

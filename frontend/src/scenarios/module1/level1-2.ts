@@ -19,6 +19,20 @@ const LEVEL_1_2: ScenarioDefinition = {
     falseConfidencePhaseEnd: 0.45,
     failurePhaseEnd: 0.65,
     insightPhaseEnd: 0.75,
+    dispatchMessage: "user submitted the onboarding form 3 times now. nothing is showing up in the db. they're losing trust",
+    narratorScript: {
+        "opening": "Form submitted. Success toast. Empty database. The frontend thinks it worked. Something swallowed that data between the browser and the server. Time to trace the path.",
+        "actions": {
+            "inspect_console": "No frontend errors. Fetch resolved 200. The problem isn't here — check where the request actually went.",
+            "inspect_network": "POST to /submit. Not /api/submit. The backend listens on /api/submit. This request hit nothing.",
+            "read_frontend_code": "fetch('/submit') — no /api prefix. Classic route mismatch. The request was going to the wrong address the whole time.",
+            "read_backend_routes": "Backend: POST /api/submit. Frontend called: /submit. One missing prefix. The data went nowhere.",
+            "check_database": "No records exist. Submit did not persist anything."
+        },
+        "resolution": "Prefix added. Data now reaches the right route. Route mismatches are invisible until you check exactly where the request actually went."
+    },
+    momentumTease: "Next case: The API returned 200. Network tab shows success. The UI is displaying the wrong data. The request worked — the reading didn't.",
+
 
     initialAppState: (surface) => `
 // Frontend form submit handler:

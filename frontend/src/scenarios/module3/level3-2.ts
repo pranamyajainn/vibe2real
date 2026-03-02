@@ -18,6 +18,17 @@ const LEVEL_3_2: ScenarioDefinition = {
     falseConfidencePhaseEnd: 0.45,
     failurePhaseEnd: 0.65,
     insightPhaseEnd: 0.75,
+    dispatchMessage: "merge is failing and the release is blocked. i don't know which version to keep",
+    narratorScript: {
+        "opening": "Two branches changed the same file. Git doesn't know which version is correct. You have to read both, understand why each change was made, and decide what the right final state is. No tool does this for you.",
+        "actions": {
+            "git_log_both": "Conflict markers: HEAD has timeout: 5000, incoming has timeout: 30000. Both changed the same config line for different reasons.",
+            "read_diff": "Main set a global 5s timeout. Feature branch set a per-route 30s for uploads. These serve different purposes — both should exist."
+        },
+        "resolution": "Per-route timeouts configured. Merge conflicts require understanding why each change was made — not just picking one side."
+    },
+    momentumTease: "Next case: A bad commit is live. Users are affected right now. The fix has to be surgical — undo one thing without breaking what came after.",
+
 
     initialAppState: (surface) => `
 $ git merge feature/${surface.serviceName}

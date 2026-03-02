@@ -162,7 +162,7 @@
 
 .navStatus {
     font-family: 'Share Tech Mono', monospace;
-    font-size: 0.75rem;
+    font-size: 0.82rem;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: #E8000D;
@@ -181,7 +181,7 @@
     color: #fff;
     border: none;
     font-family: 'Share Tech Mono', monospace;
-    font-size: 0.75rem;
+    font-size: 0.82rem;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     padding: 0.55rem 1.2rem;
@@ -301,10 +301,10 @@
 
 .heroSub {
     font-family: 'Share Tech Mono', monospace;
-    font-size: 1rem;
+    font-size: 1.15rem;
     color: #666;
     max-width: 560px;
-    line-height: 1.8;
+    line-height: 1.85;
     margin-bottom: 3rem;
     animation: fadeUp 0.6s 0.2s ease both;
     position: relative;
@@ -400,7 +400,7 @@
 
 .statLabel {
     font-family: 'Share Tech Mono', monospace;
-    font-size: 0.72rem;
+    font-size: 0.8rem;
     color: #666;
     text-transform: uppercase;
     letter-spacing: 0.1em;
@@ -422,10 +422,10 @@
 
 .tickerText {
     font-family: 'Share Tech Mono', monospace;
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     color: #fff;
     text-transform: uppercase;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.15em;
     padding-right: 2rem;
 }
 
@@ -452,7 +452,7 @@
 
 .secLabel {
     font-family: 'Share Tech Mono', monospace;
-    font-size: 0.75rem;
+    font-size: 0.85rem;
     font-weight: 400;
     letter-spacing: 0.3em;
     text-transform: uppercase;
@@ -520,8 +520,8 @@
 .terminalBody {
     padding: 1.5rem;
     font-family: 'Share Tech Mono', monospace;
-    font-size: 0.85rem;
-    line-height: 2;
+    font-size: 0.95rem;
+    line-height: 2.1;
 }
 
 .tLine {
@@ -611,7 +611,7 @@
 }
 
 .collapseItemTitle {
-    font-size: 0.85rem;
+    font-size: 1rem;
     color: #eaeaea;
     margin-bottom: 0.3rem;
     font-weight: 700;
@@ -619,7 +619,7 @@
 
 .collapseItemSub {
     font-family: 'Share Tech Mono', monospace;
-    font-size: 1rem;
+    font-size: 0.82rem;
     line-height: 1.8;
     color: #666;
 }
@@ -681,7 +681,7 @@
 
 .levelTag {
     font-family: 'Share Tech Mono', monospace;
-    font-size: 0.75rem;
+    font-size: 0.85rem;
     color: #E8000D;
     letter-spacing: 0.2em;
     text-transform: uppercase;
@@ -700,9 +700,9 @@
 
 .levelDesc {
     font-family: 'Share Tech Mono', monospace;
-    font-size: 0.72rem;
+    font-size: 1rem;
     color: #666;
-    line-height: 1.8;
+    line-height: 1.9;
 }
 
 /* ---- EVIDENCE ---- */
@@ -726,22 +726,23 @@
 
 .evLabel {
     font-family: 'Share Tech Mono', monospace;
-    font-size: 0.72rem;
+    font-size: 1rem;
     letter-spacing: 0.1em;
     color: #666;
     text-transform: uppercase;
-}
+
+    line-height: 1.9;}
 
 /* ---- LEADERBOARD ---- */
 .boardTable {
     width: 100%;
     border-collapse: collapse;
     font-family: 'Share Tech Mono', monospace;
-    font-size: 0.8rem;
+    font-size: 0.9rem;
 }
 
 .boardTable th {
-    font-size: 0.62rem;
+    font-size: 0.75rem;
     color: #666;
     letter-spacing: 0.2em;
     text-transform: uppercase;
@@ -815,7 +816,7 @@
 
 .priceSub {
     font-family: 'Share Tech Mono', monospace;
-    font-size: 0.65rem;
+    font-size: 0.8rem;
     color: #666;
     text-transform: uppercase;
     margin-bottom: 2rem;
@@ -830,8 +831,8 @@
 
 .priceList li {
     font-family: 'Share Tech Mono', monospace;
-    font-size: 0.85rem;
-    line-height: 2;
+    font-size: 1rem;
+    line-height: 2.2;
     color: #666;
     border-bottom: 1px solid #111;
     padding: 0.8rem 0;
@@ -866,18 +867,18 @@
 
 .faqQ {
     font-family: 'Share Tech Mono', monospace;
-    font-size: 0.78rem;
+    font-size: 0.9rem;
     color: #E8000D;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.12em;
     margin-bottom: 0.5rem;
 }
 
 .faqA {
     font-family: 'Share Tech Mono', monospace;
-    font-size: 0.9rem;
+    font-size: 1rem;
     color: #666;
-    line-height: 1.8;
+    line-height: 1.9;
 }
 
 /* ---- FOOTER ---- */
@@ -889,7 +890,7 @@
     justify-content: space-between;
     align-items: center;
     font-family: 'Share Tech Mono', monospace;
-    font-size: 0.72rem;
+    font-size: 0.8rem;
     color: #666;
     line-height: 1.5;
 }
@@ -967,4 +968,179 @@
         align-items: flex-start;
         gap: 1rem;
     }
+}
+/* ---- NEW PRICING SECTION ---- */
+.pricingGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+}
+
+@media (max-width: 768px) {
+    .pricingGrid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+}
+
+.pricingAccessLabel {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.85rem;
+    color: #E8000D;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.pricingFreeHeadline {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3.5rem;
+    color: #fff;
+    text-transform: uppercase;
+    line-height: 0.95;
+    margin-bottom: 1.5rem;
+}
+
+.pricingSubtext {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1.1rem;
+    color: #666;
+    line-height: 1.9;
+    max-width: 480px;
+    margin-bottom: 2rem;
+}
+
+.pricingOsBadge {
+    border: 1px solid #2a2a2a;
+    padding: 0.6rem 1.2rem;
+    display: inline-flex;
+    gap: 0.8rem;
+    align-items: center;
+}
+
+.pricingOsDot {
+    color: #E8000D;
+    font-size: 0.72rem;
+}
+
+.pricingOsText {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.82rem;
+    color: #666;
+}
+
+.pricingOsLink {
+    color: #E8000D;
+    text-decoration: none;
+}
+
+.pricingOsLink:hover {
+    text-decoration: underline;
+}
+
+.certificateBox {
+    border: 1px solid #2a2a2a;
+    background: #0a0a0a;
+    padding: 2.5rem;
+    box-shadow: 0 0 80px rgba(232,0,13,0.08);
+    position: relative;
+}
+
+.certificateBox::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: #E8000D;
+}
+
+.certLabel {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.85rem;
+    color: #E8000D;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    margin-bottom: 1.2rem;
+    display: block;
+}
+
+.certAmount {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 5rem;
+    color: #EAEAEA;
+    line-height: 1;
+}
+
+.certSubLabel {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.8rem;
+    color: #666;
+    text-transform: uppercase;
+    margin-top: 0.4rem;
+    display: block;
+}
+
+.certDesc {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1.1rem;
+    color: #666;
+    line-height: 1.9;
+    margin: 1.2rem 0;
+}
+
+.certNotice {
+    border: 1px solid #1a1a1a;
+    background: #0d0d0d;
+    padding: 1rem 1.2rem;
+    margin: 1.2rem 0;
+}
+
+.certNoticeTop {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.88rem;
+    color: #f5a623;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.5rem;
+    display: block;
+
+    line-height: 1.8;}
+
+.certNoticeBody {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.88rem;
+    color: #666;
+    line-height: 1.8;
+}
+
+.btnContact {
+    display: block;
+    text-align: center;
+    padding: 1rem;
+    background: #E8000D;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.8rem;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    text-decoration: none;
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.btnContact:hover {
+    transform: translateY(-2px);
+    background: #ff1a23;
+}
+
+.certContactEmail {
+    text-align: center;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.82rem;
+    color: #666;
+    margin-top: 0.6rem;
+    display: block;
 }

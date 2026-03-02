@@ -1,8 +1,7 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, use } from 'react';
 import Link from 'next/link';
-import { useParams } from 'next/navigation';
 import { getLevelProgress, getSession, type Tier } from '@/engine/sessionStore';
 import { getActionLog } from '@/engine/actionLogger';
 import { detectAIDependency } from '@/engine/actionLogger';
@@ -15,16 +14,16 @@ import styles from './Report.module.css';
 const REVEAL_PHASES = ['stabilizing', 'tier', 'behavior', 'ai', 'reflection', 'next'] as const;
 type Phase = typeof REVEAL_PHASES[number];
 
-export default function ReportPage() {
-    const params = useParams();
-    const moduleId = Number(params.moduleId);
-    const levelIndex = Number(params.levelId) - 1;
-    const levelId = `${moduleId}-${levelIndex + 1}`;
+export default function ReportPage(props: { params: Promise<{ moduleId: string, levelId: string }> }) {
+    const params = use(props.params);
+    const { moduleId: moduleIdStr, levelId } = params;
+    const moduleId = Number(moduleIdStr);
+    const levelIndex = Number(levelId.split('-')[1]) - 1;
 
     const scenario = getScenario(levelId);
     const mod = getModule(moduleId);
     const [phase, setPhase] = useState<number>(0); // index into REVEAL_PHASES
-    const [tierResult, setTierResult] = useState<ReturnType<typeof assignTier> | null>(null);
+    const [tierResult, setTierResult] = useState<ReturnType<typeof assignTier> | null | false>(null);
     const [aiResult, setAiResult] = useState<ReturnType<typeof detectAIDependency> | null>(null);
     const [reflections, setReflections] = useState<ReturnType<typeof generateTransferReflection>>([]);
     const [progress, setProgress] = useState<ReturnType<typeof getLevelProgress> | null>(null);
@@ -59,6 +58,8 @@ export default function ReportPage() {
 
             const refs = generateTransferReflection(moduleId, log, tier.tier);
             setReflections(refs);
+        } else {
+            setTierResult(false);
         }
 
         // Sequential phase reveal
@@ -79,6 +80,20 @@ export default function ReportPage() {
 
     if (!scenario || !mod) return null;
 
+    if (tierResult === false) {
+        return (
+            <div className={styles.reportPage}>
+                <div style={{ maxWidth: '600px', margin: '6rem auto', textAlign: 'center' }}>
+                    <div style={{ color: '#E8000D', fontFamily: 'var(--font-mono)', letterSpacing: '0.1em', marginBottom: '1rem', fontWeight: 'bold' }}>// CASE DEBRIEF</div>
+                    <p style={{ color: '#888', marginBottom: '2rem', fontFamily: 'var(--font-mono)' }}>Session data unavailable.</p>
+                    <Link href="/play" className={styles.nextBtn}>
+                        [ RETURN TO SIMULATION → ]
+                    </Link>
+                </div>
+            </div>
+        );
+    }
+
     const currentPhaseName = REVEAL_PHASES[phase];
     const show = (p: Phase) => REVEAL_PHASES.indexOf(p) <= phase;
 
@@ -89,13 +104,20 @@ export default function ReportPage() {
         reliable: '#ffff00',
     };
 
+    const tierSubtitles: Record<Tier, string> = {
+        reliable: "In a real incident, you'd be the one people call first.",
+        efficient: "You'd close this before most developers finish reading the error.",
+        independent: "You read the scene and reasoned your way through it. That's not common.",
+        guidance: "You closed it. But you guessed more than you read. That's the habit to break."
+    };
+
     return (
         <div className={styles.reportPage}>
             <div className={styles.breadcrumb}>
                 <Link href="/play">Simulation</Link>
                 {' → '}
                 <Link href={`/play/${moduleId}`}>Module {moduleId}</Link>
-                {' → '} Level {moduleId}.{levelIndex + 1} — Report
+                {' → '} Level {moduleId}.{levelIndex + 1} — Case Debrief
             </div>
 
             {/* Phase 0: Stabilizing */}
@@ -113,7 +135,7 @@ export default function ReportPage() {
                 <div className={styles.reportSection}>
                     {currentStreak > 1 && (
                         <div className={styles.streakBanner}>
-                            🔥 Streak: {currentStreak} consecutive resolved incidents
+                            🔥 Streak: {currentStreak} consecutive closed cases
                         </div>
                     )}
                     <div
@@ -124,7 +146,7 @@ export default function ReportPage() {
                         <div className={`${styles.tierTitle} ${styles[tierResult.tier]}`}>
                             {tierResult.tierLabel}
                         </div>
-                        <div className={styles.tierDesc}>{tierResult.tierDescription}</div>
+                        <div className={styles.tierDesc}>{tierSubtitles[tierResult.tier]}</div>
                         <div className={styles.xpGain}>+{tierResult.xpAwarded} XP</div>
                     </div>
                 </div>
@@ -179,6 +201,16 @@ export default function ReportPage() {
                             ))}
                         </div>
                     )}
+
+                    <div style={{ marginTop: '2rem', fontFamily: 'var(--font-mono), monospace', fontSize: '1rem', color: '#EAEAEA', borderLeft: '3px solid #E8000D', paddingLeft: '1rem' }}>
+                        // SENIOR<br /><br />
+                        {{
+                            reliable: "Clean work. Methodical. This is what good detectives look like under pressure.",
+                            efficient: "Fast and accurate. You're reading signal, not noise.",
+                            independent: "You reasoned through it yourself. That's what makes someone dangerous in a real incident.",
+                            guidance: "You got there. Come back and do it without guessing. The difference will surprise you."
+                        }[tierResult.tier]}
+                    </div>
                 </div>
             )}
 

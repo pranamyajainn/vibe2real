@@ -18,6 +18,20 @@ const LEVEL_2_3: ScenarioDefinition = {
     falseConfidencePhaseEnd: 0.45,
     failurePhaseEnd: 0.65,
     insightPhaseEnd: 0.75,
+    dispatchMessage: "why does the dashboard take 8 seconds to open? client flagged it in review",
+    narratorScript: {
+        "opening": "They're going to ask you why the dashboard is slow in 4 minutes. Find the answer before the call starts. Read fast.",
+        "actions": {
+            "check_bundle_size": "No frontend errors. Rendered instantly once data arrived. The bottleneck is the API response time.",
+            "check_network_waterfall": "GET /api/dashboard — 7.8 second response time. Frontend is instant. It's waiting on the backend.",
+            "check_api_internals": "Three sequential database queries, no indexing, nested loop over results. Each waits for the last. That's the 8 seconds.",
+            "check_third_party": "Third party script is blocking the main thread."
+        },
+        "resolution": "Sequential unoptimized queries in the backend. Frontend performance problems that aren't in the frontend are always in what the frontend is waiting for."
+    },
+    momentumTease: "Next case: CORS error. The obvious fix was tried. It didn't work. Adding solutions before understanding the problem never works.",
+    patternBreak: 'time_pressure',
+
 
     initialAppState: (surface) => `
 // Page load time: 8.4 seconds

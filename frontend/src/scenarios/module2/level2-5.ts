@@ -18,6 +18,19 @@ const LEVEL_2_5: ScenarioDefinition = {
     falseConfidencePhaseEnd: 0.45,
     failurePhaseEnd: 0.65,
     insightPhaseEnd: 0.75,
+    dispatchMessage: "user is seeing yesterday's data. they made a payment and it's not showing",
+    narratorScript: {
+        "opening": "Everything looks fine. Data is 24 hours old. No errors. The UI is rendering exactly what it received — check what the server actually sent back, beyond just the status code.",
+        "actions": {
+            "inspect_network_response": "GET /api/feed — 200. Check the response headers on this specific request. Something there controls how long the browser holds onto this response.",
+            "check_cache_storage": "Cache-Control: max-age=86400. Server told the browser to cache this for exactly 24 hours. Browser never re-fetched it.",
+            "check_service_worker": "No errors. Component rendered correctly with what it received. The data is stale — that's a caching issue, not a code issue.",
+            "hard_reload": "Hard reload bypasses cache. That proves it's a caching problem."
+        },
+        "resolution": "Cache-Control header found. Stale data with no errors is almost always a cache directive. Invisible until you look at headers specifically."
+    },
+    momentumTease: "Module 3 begins. No more reading output. You're in the terminal now.",
+
 
     initialAppState: (surface) => `
 // UI shows: "Last updated: 24 hours ago"

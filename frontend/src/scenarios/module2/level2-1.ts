@@ -18,6 +18,19 @@ const LEVEL_2_1: ScenarioDefinition = {
     falseConfidencePhaseEnd: 0.35,
     failurePhaseEnd: 0.55,
     insightPhaseEnd: 0.70,
+    dispatchMessage: "app is crashing for everyone on load. we're getting support tickets",
+    narratorScript: {
+        "opening": "Crashed on load. The browser already has the full report. Don't guess — read the evidence first. It tells you exactly what broke and exactly where.",
+        "actions": {
+            "read_console_error": "ReferenceError: config is not defined at App.tsx:3. Variable config is used before it exists. Read the source to see where it should come from.",
+            "read_component_code": "Line 3: const api = config.endpoint. Config is never imported or defined. It was deleted or never added.",
+            "inspect_network": "No requests made — app crashed before any fetch ran. The crime happened in startup code, not the network.",
+            "read_parent_usage": "Parent component is rendering it wrong."
+        },
+        "resolution": "Read the error, found the missing variable. ReferenceError always tells you exactly what's absent and exactly where. Reading first is the whole skill."
+    },
+    momentumTease: "Next case: A spinner that never stops. No error anywhere. The fetch completed — but the code never checked if it actually succeeded.",
+
 
     initialAppState: (surface) => `
 // Console (PRODUCTION):

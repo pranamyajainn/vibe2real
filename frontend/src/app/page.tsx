@@ -5,6 +5,23 @@ import Link from 'next/link';
 import styles from './landing.module.css';
 
 export default function Home() {
+  const [price, setPrice] = React.useState({ currency: '—', amount: '—' });
+
+  useEffect(() => {
+    fetch('https://ipapi.co/json/')
+      .then(r => r.json())
+      .then(data => {
+        if (data.country_code === 'IN') {
+          setPrice({ currency: '₹', amount: '1,499' });
+        } else {
+          setPrice({ currency: '$', amount: '99' });
+        }
+      })
+      .catch(() => {
+        setPrice({ currency: '$', amount: '99' });
+      });
+  }, []);
+
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
@@ -227,24 +244,73 @@ export default function Home() {
       <section id="pricing" className={`${styles.secPad} ${styles.secBg0} ${styles.bTop}`}>
         <div className={`${styles.reveal}`}>
           <div className={styles.secLabel}>// SYSTEM AUTHORIZATION TOKEN</div>
-          <h2 className={styles.secTitle}>ONE PRICE. <br /><span className={styles.textRed}>NO REFUNDS.</span></h2>
+          <h2 className={styles.secTitle}>ACCESS IS <br /><span className={styles.textRed}>FREE.</span></h2>
         </div>
-        <div className={`${styles.reveal}`}>
-          <div className={styles.pricingBox}>
-            <div className={styles.priceWrap}>
-              <span className={styles.currency}>₹</span>
-              <span className={styles.amount}>1,499</span>
-            </div>
-            <span className={styles.priceSub}>ONE-TIME ACCESS — NON-REFUNDABLE</span>
+
+        <div className={`${styles.pricingGrid} ${styles.reveal}`}>
+          {/* Left Column — Free Tier */}
+          <div className={styles.pricingLeft}>
+            <span className={styles.pricingAccessLabel}>// ACCESS MODEL</span>
+            <h3 className={styles.pricingFreeHeadline}>
+              100% FREE.<br />
+              OPEN SOURCE.<br />
+              NO PAYMENT<br />
+              REQUIRED.
+            </h3>
+            <p className={styles.pricingSubtext}>
+              This simulator exists to give you real debugging experience under pressure.
+              No upsells. No locked content. No payment walls.
+              Everything in the simulation is free. Always.
+            </p>
+
             <ul className={styles.priceList}>
-              <li><span>—</span> All three simulation levels — no expiry</li>
+              <li><span>—</span> All three simulation levels — completely free</li>
+              <li><span>—</span> All 15 failure scenarios — no paywall</li>
               <li><span>—</span> Manual investigation enforced — no walkthroughs</li>
               <li><span>—</span> AI assistance restricted within simulation bounds</li>
               <li><span>—</span> Failure states active — incomplete runs logged</li>
-              <li><span>—</span> Completion badge for freelance and GitHub profiles</li>
-              <li><span>—</span> Operational signal for job applications and portfolio</li>
+              <li><span>—</span> Unlimited retries — no time limit</li>
             </ul>
-            <button className={`${styles.btnPrimary} ${styles.btnPricing}`}>ACKNOWLEDGE & PROCEED</button>
+
+            <div className={styles.pricingOsBadge}>
+              <span className={styles.pricingOsDot}>●</span>
+              <span className={styles.pricingOsText}>
+                OPEN SOURCE — <a href="https://github.com/pranamyajainn/vibe2real" className={styles.pricingOsLink}>github.com/pranamyajainn/vibe2real</a>
+              </span>
+            </div>
+          </div>
+
+          {/* Right Column — Certificate Card */}
+          <div className={styles.pricingRight}>
+            <div className={styles.certificateBox}>
+              <span className={styles.certLabel}>// OPTIONAL — CERTIFICATE ONLY</span>
+
+              <div className={styles.certPriceWrap}>
+                <span className={styles.certCurrency}>{price.currency}</span>
+                <span className={styles.certAmount}>{price.amount}</span>
+                <span className={styles.certSubLabel}>CERTIFICATE ACCESS — ONE TIME</span>
+              </div>
+
+              <p className={styles.certDesc}>
+                The certificate verifies you completed all three modules
+                without AI dependency flags — issued as a portfolio signal
+                for freelance profiles, job applications, and GitHub READMEs.
+              </p>
+
+              <div className={styles.certNotice}>
+                <span className={styles.certNoticeTop}>// IMPORTANT</span>
+                <p className={styles.certNoticeBody}>
+                  We do not have an automated payment gateway.
+                  To receive your certificate, contact us directly
+                  after completing all three modules.
+                </p>
+              </div>
+
+              <a href="mailto:contact@pranamya.tech" className={styles.btnContact}>
+                CONTACT FOR CERTIFICATE →
+              </a>
+              <span className={styles.certContactEmail}>contact@pranamya.tech</span>
+            </div>
           </div>
         </div>
       </section>

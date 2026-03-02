@@ -18,6 +18,19 @@ const LEVEL_3_1: ScenarioDefinition = {
     falseConfidencePhaseEnd: 0.35,
     failurePhaseEnd: 0.55,
     insightPhaseEnd: 0.70,
+    dispatchMessage: "deployment said success but everything is 500. what happened",
+    narratorScript: {
+        "opening": "Deployment said it worked. Every request returns 500. The code arrived — but something it depends on didn't. Check what the server says when it tries to actually run.",
+        "actions": {
+            "read_error_logs": "Server logs: Cannot find module 'express'. Server started and immediately crashed. A dependency is missing from the runtime.",
+            "check_installed_deps": "package.json has express listed. Server logs show it's not installed. Deployment copied the code, skipped the packages.",
+            "check_package_json": "Routes defined correctly. Server never reached them — crashed at startup before any route could run.",
+            "list_log_dir": "Checking the log directory for clues."
+        },
+        "resolution": "npm install on the server. Deployments that skip dependency installation always produce 500s. The code was right. The runtime environment was incomplete."
+    },
+    momentumTease: "Next case: A merge conflict. Two branches. One file. The deploy is blocked until someone decides what the correct final state is.",
+
 
     initialAppState: (surface) => `
 $ curl https://yourdomain.com/api
