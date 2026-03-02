@@ -15,6 +15,7 @@ const shareTechMono = Share_Tech_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://vibe2real.com'),
   title: 'Vibe2Real | Incident Simulator',
   description: 'A debugging simulator for vibe coders. 15 real incidents. No AI allowed. 100% free.',
   openGraph: {
