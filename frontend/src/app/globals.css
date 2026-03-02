@@ -13,7 +13,7 @@ body {
   overflow-x: hidden;
   background-color: var(--background);
   color: var(--foreground);
-  font-family: var(--font-sans), sans-serif;
+  font-family: var(--font-mono), monospace;
   margin: 0;
   padding: 0;
   /* Harsh grid background */
@@ -31,7 +31,13 @@ a {
   text-decoration: none;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-display), sans-serif;
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: -0.02em;

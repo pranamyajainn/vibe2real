@@ -273,7 +273,7 @@ export default function ScenarioScreen() {
             }
         }
 
-        console.log(`Action ID completed: ${action.id}`);
+
         const narratorResponse = actionClueMap[action.id];
         if (narratorResponse) {
             pushNarrator(narratorResponse);
@@ -547,7 +547,7 @@ export default function ScenarioScreen() {
 
                         {irrecoverable && (
                             <div style={{ marginTop: '1rem' }}>
-                                <button onClick={handleRestart} className={styles.restartBtn}>
+                                <button aria-label="Restart Scenario" onClick={handleRestart} className={styles.restartBtn}>
                                     ↺ Restart Scenario
                                 </button>
                                 <div className={styles.restartHint}>
@@ -584,6 +584,7 @@ export default function ScenarioScreen() {
                                 {investigationActions.map((action, idx) => (
                                     <div key={action.id} className={styles.actionBtnWrapper}>
                                         <button
+                                            aria-label={action.label}
                                             className={`${styles.actionBtn} ${(!!pendingAction || irrecoverable || resolved) ? styles.disabled : ''}`}
                                             onClick={() => handleAction(action)}
                                             disabled={!!pendingAction || irrecoverable || resolved}
@@ -616,6 +617,7 @@ export default function ScenarioScreen() {
                                     return (
                                         <div key={action.id} className={styles.actionBtnWrapper}>
                                             <button
+                                                aria-label={action.label}
                                                 className={`${styles.actionBtn} ${isRedHerringBtn ? styles.redHerringBtn : ''} ${(!!pendingAction || irrecoverable || resolved || isLocked) ? styles.disabled : ''}`}
                                                 onClick={() => !isLocked && handleAction(action)}
                                                 disabled={!!pendingAction || irrecoverable || resolved || isLocked}
@@ -645,6 +647,7 @@ export default function ScenarioScreen() {
                                 {reflexiveActions.map((action, idx) => (
                                     <div key={action.id} className={styles.actionBtnWrapper}>
                                         <button
+                                            aria-label={action.label}
                                             className={`${styles.actionBtn} ${(!!pendingAction || irrecoverable || resolved) ? styles.disabled : ''}`}
                                             onClick={() => handleAction(action)}
                                             disabled={!!pendingAction || irrecoverable || resolved}
@@ -683,6 +686,7 @@ export default function ScenarioScreen() {
 
                         <div className={styles.resolveBtn}>
                             <button
+                                aria-label="Resolve Case"
                                 className={`${styles.resolveBtnInner} ${canResolve && !resolved ? styles.resolveBtnReady : ''}`}
                                 onClick={handleResolve}
                                 disabled={!canResolve || resolved}

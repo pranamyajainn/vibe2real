@@ -2,6 +2,7 @@
 
 import React, { useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import styles from './landing.module.css';
 
 export default function Home() {
@@ -97,7 +98,7 @@ export default function Home() {
             </div>
           </div>
           <div className={styles.heroRight}>
-            <img src="/177237402778bf.png" alt="Simulation Preview" className={styles.heroImage} />
+            <Image src="/177237402778bf.png" alt="Simulation Preview" className={styles.heroImage} width={900} height={600} priority style={{ width: '100%', height: 'auto' }} />
           </div>
         </div>
       </section>

@@ -44,7 +44,6 @@ async function ${surface.variableName}() {
     setItems(data.items);
   } catch (e) {
     // error silently swallowed
-    console.log('done');
   }
 }
 
